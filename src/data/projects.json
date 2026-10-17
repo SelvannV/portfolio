@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Organized",
+    "description": "A task management app built for a more organized everyday life.",
+    "links": {
+      "GitHub": "https://github.com/AppOrganized"
+    },
+    "image": "/projects/organized.webp",
+    "stack": [
+      "TypeScript",
+      "React Native",
+      "Expo",
+      "ExpressJS",
+      "Docker",
+      "MySQL"
+    ],
+    "tags": [
+      "new",
+      "featured",
+      "live"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Portfolio",
+    "description": "My own portfolio to showcase my work.",
+    "links": {
+      "Website": "/",
+      "GitHub": "https://github.com/AppOrganized"
+    },
+    "stack": [
+      "TypeScript",
+      "React",
+      "NextJS"
+    ],
+    "tags": [
+      "new",
+      "in progress"
+    ]
+  }
+]
