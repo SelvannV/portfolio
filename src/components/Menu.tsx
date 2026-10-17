@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const MENU = ["introduction", "about", "projects", "contact"];
 
@@ -19,7 +20,7 @@ function MenuButton({
     <button
       onClick={onClick}
       aria-current={active ? "location" : undefined}
-      className={`group relative isolate w-fit shrink-0 overflow-hidden px-2 py-2 text-left text-xs uppercase tracking-wide transition-transform duration-150 ease-in-out active:scale-95 select-none sm:text-sm md:text-base ${
+      className={`cursor-pointer group relative isolate w-fit shrink-0 overflow-hidden px-2 py-2 text-left text-[clamp(0.65rem,0.8vw,1rem)] uppercase tracking-wide transition-transform duration-150 ease-in-out active:scale-95 ${
         active ? "text-white dark:text-black" : "text-black dark:text-white"
       }`}
     >
@@ -30,11 +31,11 @@ function MenuButton({
       />
 
       <span className="relative z-10">
-        {String(index).padStart(2, "0")}. {label}
+        {String(index).padStart(2, "0")} — {label}
       </span>
 
       <span
-        className={`absolute bottom-1 left-2 h-0.5 w-[calc(100%-1rem)] origin-left bg-current transition-transform duration-300 ease-out ${
+        className={`absolute bottom-1 left-2 h-0.5 w-[calc(100%-1rem)] origin-left bg-current transition-transform duration-300 ease-out rounded-full ${
           active ? "scale-x-0" : "scale-x-0 group-hover:scale-x-100"
         }`}
       />
@@ -47,29 +48,47 @@ export function Menu() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const sections = MENU.map((id) => document.getElementById(id)).filter(
-      (section): section is HTMLElement => section !== null,
-    );
+    const updateActiveSection = () => {
+      const sections = MENU.map((id) => document.getElementById(id)).filter(
+        (section): section is HTMLElement => section !== null,
+      );
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (sections.length === 0) return;
 
-        if (visible[0]) {
-          setActiveItem(visible[0].target.id);
-        }
-      },
-      {
-        rootMargin: "-20% 0px -60% 0px",
-        threshold: [0, 0.1, 0.25, 0.5],
-      },
-    );
+      // Ensure the final section becomes active at the bottom of the page.
+      const atBottom =
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 2;
 
-    sections.forEach((section) => observer.observe(section));
+      if (atBottom) {
+        setActiveItem(sections[sections.length - 1].id);
+        return;
+      }
 
-    return () => observer.disconnect();
+      // Use a fixed point in the viewport to identify the active section.
+      const referenceY = window.innerHeight * 0.35;
+
+      const currentSection = sections.find((section) => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= referenceY && rect.bottom > referenceY;
+      });
+
+      if (currentSection) {
+        setActiveItem(currentSection.id);
+      }
+    };
+
+    updateActiveSection();
+
+    window.addEventListener("scroll", updateActiveSection, {
+      passive: true,
+    });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, []);
 
   useEffect(() => {
@@ -176,7 +195,7 @@ export function Menu() {
             }`}
           >
             <nav className="overflow-hidden">
-              <div className="border border-zinc-200/40 bg-zinc-50/65 p-3 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-neutral-950/65">
+              <div className="border border-zinc-200/40 bg-zinc-50/65 p-3 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-neutral-950/65  rounded-xs">
                 <div className="flex flex-col items-start gap-1 font-martian">
                   {MENU.map((label, index) => (
                     <MenuButton
@@ -187,6 +206,9 @@ export function Menu() {
                       onClick={() => navigateTo(label)}
                     />
                   ))}
+                </div>
+                <div className="mt-4 flex justify-center">
+                  <ThemeToggle onChange={() => setMenuOpen(false)} />
                 </div>
               </div>
             </nav>
