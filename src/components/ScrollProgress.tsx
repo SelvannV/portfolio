@@ -30,7 +30,7 @@ export function ScrollProgress() {
 
   return (
     <div
-      className={`${styles.scrollProgress} pointer-events-none fixed inset-x-0 bottom-0 z-50 flex items-center gap-4 px-6 pb-5`}
+      className={`${styles.scrollProgress} pointer-events-none fixed inset-x-0 bottom-0 z-50 flex items-center gap-3 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:gap-4 sm:px-6`}
     >
       <div className="h-1 flex-1 overflow-hidden rounded-full bg-zinc-300/60 dark:bg-white/15">
         <div

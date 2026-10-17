@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const MENU = ["introduction", "about", "projects", "contact"];
 
-export function MenuButton({
+function MenuButton({
   label,
   index,
   active,
@@ -19,8 +19,8 @@ export function MenuButton({
     <button
       onClick={onClick}
       aria-current={active ? "location" : undefined}
-      className={`group relative isolate overflow-hidden p-2 text-base uppercase transition-transform duration-150 ease-in-out active:scale-95 select-none ${
-        active ? "text-white" : "text-black dark:text-white"
+      className={`group relative isolate w-fit shrink-0 overflow-hidden px-2 py-2 text-left text-xs uppercase tracking-wide transition-transform duration-150 ease-in-out active:scale-95 select-none sm:text-sm md:text-base ${
+        active ? "text-white dark:text-black" : "text-black dark:text-white"
       }`}
     >
       <span
@@ -29,7 +29,7 @@ export function MenuButton({
         }`}
       />
 
-      <span className={`relative z-10 ${active ? "dark:text-black" : ""}`}>
+      <span className="relative z-10">
         {String(index).padStart(2, "0")}. {label}
       </span>
 
@@ -44,29 +44,170 @@ export function MenuButton({
 
 export function Menu() {
   const [activeItem, setActiveItem] = useState("introduction");
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const navigateTo = (label: string) => {
-    setActiveItem(label);
+  useEffect(() => {
+    const sections = MENU.map((id) => document.getElementById(id)).filter(
+      (section): section is HTMLElement => section !== null,
+    );
 
-    document.getElementById(label)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible[0]) {
+          setActiveItem(visible[0].target.id);
+        }
+      },
+      {
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: [0, 0.1, 0.25, 0.5],
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
+
+  const navigateTo = (id: string) => {
+    setActiveItem(id);
+    setMenuOpen(false);
+
+    const section = document.getElementById(id);
+    if (!section) return;
+
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+    const sectionHeight = section.offsetHeight;
+
+    const targetTop = isMobile
+      ? sectionTop + sectionHeight / 2 - window.innerHeight / 2
+      : sectionTop;
+
+    window.scrollTo({
+      top: Math.max(
+        0,
+        Math.min(
+          targetTop,
+          document.documentElement.scrollHeight - window.innerHeight,
+        ),
+      ),
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
     });
   };
 
+  const activeIndex = MENU.indexOf(activeItem) + 1;
+  const activeLabel = activeItem;
+
   return (
-    <div className="fixed right-0 top-0 z-30 flex h-dvh flex-col justify-center">
-      <nav className="flex flex-col items-end justify-center gap-6 px-8 font-martian">
-        {MENU.map((label, index) => (
-          <MenuButton
-            key={label}
-            label={label}
-            index={index + 1}
-            active={activeItem === label}
-            onClick={() => navigateTo(label)}
-          />
-        ))}
-      </nav>
-    </div>
+    <>
+      {/* Mobile navigation */}
+      <div className="fixed inset-x-0 top-3 z-40 px-4 md:hidden">
+        <div className="relative mx-auto max-w-md">
+          <div className="flex items-center justify-between border-b border-zinc-300/40 bg-zinc-50/65 px-2 py-2 backdrop-blur-xl dark:border-white/10 dark:bg-neutral-950/65">
+            <button
+              type="button"
+              onClick={() => navigateTo(activeItem)}
+              className="flex min-w-0 items-center gap-3 px-2 py-2 text-left font-martian text-xs uppercase tracking-wider"
+              aria-label={`Current section: ${activeLabel}`}
+            >
+              <span className="text-zinc-500">
+                {String(activeIndex).padStart(2, "0")}
+              </span>
+              <span className="truncate text-zinc-950 dark:text-white">
+                {activeLabel}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
+              className="group flex size-10 shrink-0 items-center justify-center text-zinc-950 transition-transform duration-200 active:scale-90 dark:text-white"
+            >
+              <span className="relative flex h-4 w-5 flex-col items-center justify-center">
+                <span
+                  className={`absolute h-px w-5 bg-current transition-transform duration-300 ease-in-out ${
+                    menuOpen ? "translate-y-0 rotate-45" : "-translate-y-1.5"
+                  }`}
+                />
+                <span
+                  className={`absolute h-px w-5 bg-current transition-all duration-200 ease-in-out ${
+                    menuOpen ? "scale-x-0 opacity-0" : "scale-x-100 opacity-100"
+                  }`}
+                />
+                <span
+                  className={`absolute h-px w-5 bg-current transition-transform duration-300 ease-in-out ${
+                    menuOpen ? "translate-y-0 -rotate-45" : "translate-y-1.5"
+                  }`}
+                />
+              </span>
+            </button>
+          </div>
+
+          {/* Animated dropdown */}
+          <div
+            id="mobile-navigation"
+            aria-hidden={!menuOpen}
+            className={`grid transition-[grid-template-rows,opacity,margin] duration-300 ease-out ${
+              menuOpen
+                ? "mt-2 grid-rows-[1fr] opacity-100"
+                : "pointer-events-none mt-0 grid-rows-[0fr] opacity-0"
+            }`}
+          >
+            <nav className="overflow-hidden">
+              <div className="border border-zinc-200/40 bg-zinc-50/65 p-3 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-neutral-950/65">
+                <div className="flex flex-col items-start gap-1 font-martian">
+                  {MENU.map((label, index) => (
+                    <MenuButton
+                      key={label}
+                      label={label}
+                      index={index + 1}
+                      active={activeItem === label}
+                      onClick={() => navigateTo(label)}
+                    />
+                  ))}
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop navigation — original vertical style */}
+      <div className="fixed right-0 top-0 z-40 hidden h-dvh flex-col justify-center md:flex">
+        <nav className="flex flex-col items-end justify-center gap-6 px-8 font-martian">
+          {MENU.map((label, index) => (
+            <MenuButton
+              key={label}
+              label={label}
+              index={index + 1}
+              active={activeItem === label}
+              onClick={() => navigateTo(label)}
+            />
+          ))}
+        </nav>
+      </div>
+    </>
   );
 }
