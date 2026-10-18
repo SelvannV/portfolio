@@ -1,0 +1,108 @@
+{
+  "letter": {
+    "content": [
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum blanditiis eaque adipisci molestias dolorum? Culpa, perspiciatis tempora itaque nam quos, architecto ratione veniam nihil esse nostrum voluptatibus consectetur asperiores vitae?",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae temporibus corporis odit repellat sapiente architecto hic corrupti, ab maxime vero laudantium dignissimos dolore accusantium adipisci veniam cum amet tenetur aspernatur.",
+      "paragraphN"
+    ],
+    "modifiedAt": "18-10-2026"
+  },
+  "timeline": [
+    {
+      "id": 1,
+      "start": "2026",
+      "end": "Present",
+      "text": "Building personal projects with Next.js, TypeScript, and modern web technologies."
+    },
+    {
+      "id": 2,
+      "start": "2025",
+      "end": "2026",
+      "text": "Developed Organized, a productivity application designed to help users manage their tasks and lists."
+    },
+    {
+      "id": 3,
+      "start": "2025",
+      "end": "2026",
+      "text": "Explored mobile development with React Native and Expo, learning about offline-first architecture and data synchronization."
+    },
+    {
+      "id": 4,
+      "start": "2024",
+      "end": "2025",
+      "text": "Learned backend development with Node.js, Express, SQL databases, and REST APIs."
+    },
+    {
+      "id": 5,
+      "start": "2024",
+      "end": "2025",
+      "text": "Started using Git and GitHub to manage source code, track changes, and organize development workflows."
+    },
+    {
+      "id": 6,
+      "start": "2023",
+      "end": "2024",
+      "text": "Built interactive websites while improving my skills in HTML, CSS, JavaScript, and responsive design."
+    },
+    {
+      "id": 7,
+      "start": "2023",
+      "end": "2024",
+      "text": "Experimented with animations, transitions, and interface design to create smoother user experiences."
+    },
+    {
+      "id": 8,
+      "start": "2022",
+      "end": "2023",
+      "text": "Created small programming projects to practice problem-solving and understand fundamental programming concepts."
+    },
+    {
+      "id": 9,
+      "start": "2021",
+      "end": "2022",
+      "text": "Became increasingly interested in computers, software, and the technology behind everyday applications."
+    },
+    {
+      "id": 10,
+      "start": "2019",
+      "end": "2021",
+      "text": "Started exploring digital tools and discovering how technology could be used to create useful things."
+    },
+    {
+      "id": 11,
+      "start": "2018",
+      "end": "2019",
+      "text": "Began developing an interest in technology through experimentation, curiosity, and independent learning."
+    },
+    {
+      "id": 12,
+      "start": "2016",
+      "end": "2018",
+      "text": "Discovered an early interest in computers and started exploring what could be created with them."
+    }
+  ],
+  "interests": [
+    "Building things from scratch",
+    "Exploring new ideas",
+    "Getting the details right",
+    "Building things afrom scratch",
+    "Building tfhings from scratch"
+  ],
+  "languages": {
+    "French": "Native",
+    "English": "Fluent",
+    "German": "Learning",
+    "Italian": "Learning",
+    "Japanese": "Learning"
+  },
+  "tools": [
+    "TypeScript",
+    "React",
+    "React Native",
+    "TypeScript",
+    "Expo",
+    "Express.js",
+    "Docker",
+    "MySQL"
+  ]
+}
