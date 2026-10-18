@@ -20,35 +20,38 @@ export function BackgroundGrid() {
       {/* Cursor spotlight — desktop pointers only */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-0 hidden bg-[linear-gradient(to_right,#00000040_1px,transparent_1px),linear-gradient(to_bottom,#00000040_1px,transparent_1px)] bg-size-[100px_100px] dark:bg-[linear-gradient(to_right,#ffffff40_1px,transparent_1px),linear-gradient(to_bottom,#ffffff40_1px,transparent_1px)] [@media(hover:hover)_and_(pointer:fine)]:md:block"
-        style={{
-          maskImage: `
-      radial-gradient(
-        circle clamp(120px, 15vw, 240px) at var(--x, -1000px) var(--y, -1000px),
-        black,
-        transparent
-      ),
-      radial-gradient(
-        ellipse at center,
-        black 25%,
-        transparent 85%
-      )
-    `,
-          WebkitMaskImage: `
-      radial-gradient(
-        circle clamp(120px, 15vw, 240px) at var(--x, -1000px) var(--y, -1000px),
-        black,
-        transparent
-      ),
-      radial-gradient(
-        ellipse at center,
-        black 25%,
-        transparent 85%
-      )
-    `,
-          maskComposite: "intersect",
-          WebkitMaskComposite: "source-in",
-        }}
+        className="pointer-events-none fixed inset-0 z-0 hidden bg-[linear-gradient(to_right,rgb(var(--glow-color)/var(--glow-opacity))_1px,transparent_1px),linear-gradient(to_bottom,rgb(var(--glow-color)/var(--glow-opacity))_1px,transparent_1px)] bg-size-[100px_100px] [@media(hover:hover)_and_(pointer:fine)]:md:block"
+        style={
+          {
+            "--glow-opacity": 0.25,
+            maskImage: `
+              radial-gradient(
+                circle clamp(120px, 15vw, 240px) at var(--x, -1000px) var(--y, -1000px),
+                black,
+                transparent
+              ),
+              radial-gradient(
+                ellipse at center,
+                black 25%,
+                transparent 85%
+              )
+            `,
+            WebkitMaskImage: `
+              radial-gradient(
+                circle clamp(120px, 15vw, 240px) at var(--x, -1000px) var(--y, -1000px),
+                black,
+                transparent
+              ),
+              radial-gradient(
+                ellipse at center,
+                black 25%,
+                transparent 85%
+              )
+            `,
+            maskComposite: "intersect",
+            WebkitMaskComposite: "source-in",
+          } as React.CSSProperties
+        }
       />
     </>
   );

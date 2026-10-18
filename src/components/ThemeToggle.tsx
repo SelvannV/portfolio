@@ -99,7 +99,7 @@ export function ThemeToggle({
         }}
         aria-label="Restart animations"
         title="Restart animations"
-        className="cursor-pointer flex h-9 w-9 items-center justify-center rounded-xs text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-white/10 dark:hover:text-white"
+        className="cursor-pointer flex h-9 w-9 items-center justify-center rounded-xs text-zinc-500 transition-colors hover:bg-primary-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-primary-600/15 dark:hover:text-white"
       >
         <RotateCcw size={16} strokeWidth={1.8} />
       </button>
@@ -123,7 +123,7 @@ export function ThemeToggle({
             className={`cursor-pointer flex h-9 w-9 items-center justify-center rounded-xs transition-colors ${
               selected
                 ? "bg-zinc-200 text-zinc-950 dark:bg-white/15 dark:text-white"
-                : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-white/10 dark:hover:text-white"
+                : "text-zinc-500 hover:bg-primary-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-primary-600/15 dark:hover:text-white"
             }`}
           >
             <Icon size={16} strokeWidth={1.8} />

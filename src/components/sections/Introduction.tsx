@@ -6,7 +6,7 @@ export function Introduction() {
     <SectionLayout
       id="introduction"
       label="01 — Introduction"
-      scrollScreens={2}
+      scrollScreens={1.5}
       indicatorText="Start scrolling"
     >
       <div className="flex w-full flex-1 flex-col items-center justify-center text-center">
@@ -17,7 +17,7 @@ export function Introduction() {
 
           <h1 className="mx-auto mt-6 max-w-5xl select-text text-5xl font-medium leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
             Hello, I'm{" "}
-            <span className="whitespace-nowrap bg-linear-to-b from-indigo-500 to-indigo-700 bg-clip-text text-transparent dark:from-indigo-400 dark:to-indigo-600">
+            <span className="whitespace-nowrap bg-linear-to-b from-primary-500 to-primary-700 bg-clip-text text-transparent dark:from-primary-400 dark:to-primary-600">
               Selvann V
             </span>
           </h1>

@@ -64,7 +64,7 @@ export function SectionLayout({
                 <button
                   type="button"
                   onClick={scrollToTop}
-                  className="cursor-pointer font-martian text-xs uppercase tracking-widest text-zinc-500 underline decoration-zinc-500 decoration-1 underline-offset-4 transition-colors hover:text-indigo-500 hover:decoration-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-500 dark:text-zinc-400 dark:decoration-zinc-400 dark:hover:text-indigo-400 dark:hover:decoration-indigo-400"
+                  className="cursor-pointer font-martian text-xs uppercase tracking-widest text-zinc-500 underline decoration-zinc-500 decoration-1 underline-offset-4 transition-colors hover:text-primary-500 hover:decoration-primary-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 dark:text-zinc-400 dark:decoration-zinc-400 dark:hover:text-primary-400 dark:hover:decoration-primary-400"
                 >
                   {end}
                 </button>
