@@ -4,6 +4,7 @@
     "title": "Organized",
     "description": "A task management app built for a more organized everyday life.",
     "links": {
+      "Play Store": "https://play.google.com/store/apps/details?id=com.selvannv.organized",
       "GitHub": "https://github.com/AppOrganized"
     },
     "image": "/projects/organized.webp",
@@ -11,7 +12,7 @@
       "TypeScript",
       "React Native",
       "Expo",
-      "ExpressJS",
+      "Express.js",
       "Docker",
       "MySQL"
     ],
@@ -25,14 +26,14 @@
     "id": 2,
     "title": "Portfolio",
     "description": "My own portfolio to showcase my work.",
+    "image": "__FORCE_PLACEHOLDER__",
     "links": {
-      "Website": "/",
-      "GitHub": "https://github.com/AppOrganized"
+      "Website": "/"
     },
     "stack": [
       "TypeScript",
       "React",
-      "NextJS"
+      "Netx.js"
     ],
     "tags": [
       "new",
