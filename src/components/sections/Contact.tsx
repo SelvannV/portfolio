@@ -250,7 +250,7 @@ export function Contact() {
                             "--social-color": item.accent || "#ffffff",
                           } as CSSProperties
                         }
-                        className={`inline-flex items-center gap-2 rounded-xs border border-zinc-300 bg-white/50 px-3 py-2 text-sm font-medium text-zinc-800 transition-colors dark:border-white/20 dark:bg-white/5 dark:text-zinc-200 ${
+                        className={`inline-flex items-center gap-2 rounded-xs border border-zinc-300 bg-white/50 p-2 text-sm font-medium text-zinc-800 transition-colors dark:border-white/20 dark:bg-white/5 dark:text-zinc-200 ${
                           item.link
                             ? "hover:border-(--social-color) hover:bg-[color-mix(in_srgb,var(--social-color)_10%,transparent)] hover:text-(--social-color) dark:hover:bg-[color-mix(in_srgb,var(--social-color)_15%,transparent)]"
                             : "cursor-default"
