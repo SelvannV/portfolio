@@ -1,28 +1,10 @@
 import projectsData from "@/data/projects.json";
+import { Project } from "@/types/projects";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "../Reveal";
 import { SectionLayout } from "./SectionLayout";
-
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  links?: Record<string, string>;
-  image: string;
-  stack: string[];
-  tags: (
-    | "archived"
-    | "live"
-    | "in progress"
-    | "new"
-    | "deprecated"
-    | "open source"
-    | "featured"
-    | "experimental"
-  )[];
-};
 
 const TAG_STYLES: Record<Project["tags"][number], string> = {
   archived:

@@ -1,8 +1,14 @@
 "use client";
 
-import aboutData from "@/data/about.json";
+import aboutJson from "@/data/about.json";
+import type {
+  AboutData,
+  TimelineEvent as TimelineEventType,
+} from "@/types/about";
 import { Reveal } from "../Reveal";
 import { SectionLayout } from "./SectionLayout";
+
+const aboutData: AboutData = aboutJson;
 
 const labelStyle =
   "font-martian text-[10px] uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400";
@@ -30,7 +36,7 @@ function TimelineEvent({
   event,
   last = false,
 }: {
-  event: (typeof aboutData.timeline)[number];
+  event: TimelineEventType;
   last?: boolean;
 }) {
   return (
@@ -54,7 +60,7 @@ function TimelineEvent({
   );
 }
 
-function Timeline({ events }: { events: typeof aboutData.timeline }) {
+function Timeline({ events }: { events: TimelineEventType[] }) {
   const maxVisible = 4;
   const visibleEvents =
     events.length > maxVisible
@@ -163,8 +169,13 @@ export function About() {
       <div className="flex w-full flex-1 flex-col justify-center py-10 sm:py-14 md:py-10 lg:py-14">
         <div className="mx-auto w-full max-w-5xl">
           {/* Introduction and timeline */}
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(220px,2fr)] lg:gap-10">
-            <Reveal preset="blur" duration={0.75} delay={0.3}>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-8">
+            <Reveal
+              preset="blur"
+              duration={0.75}
+              delay={0.3}
+              className="lg:col-span-2"
+            >
               <div>
                 <h2 className="mt-3 text-3xl leading-[1.1] font-medium tracking-tight sm:mt-5 sm:text-4xl lg:text-5xl xl:text-6xl">
                   Hello<span className="text-primary-500">.</span>
@@ -205,26 +216,37 @@ export function About() {
                 </div>
               </div>
             </Reveal>
-
-            {/* Timeline */}
-            <Reveal preset="blur" duration={0.75} delay={0.4}>
-              <div className="lg:pt-5">
-                <p className={labelStyle}>Timeline</p>
-                <Timeline events={sortedTimeline} />
-              </div>
-            </Reveal>
+            {sortedTimeline.length > 0 && (
+              <Reveal
+                preset="blur"
+                duration={0.75}
+                delay={0.4}
+                className="lg:col-start-3"
+              >
+                <div className="lg:pt-5">
+                  <p className={labelStyle}>Timeline</p>
+                  <Timeline events={sortedTimeline} />
+                </div>
+              </Reveal>
+            )}
           </div>
 
           {/* Personal details */}
-          <div className="mt-7 grid grid-cols-1 gap-6 border-t border-zinc-200/70 pt-5 sm:mt-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 dark:border-white/10">
+          <div className="mt-7 grid grid-cols-1 gap-6 pt-5 sm:mt-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
+            <Reveal
+              preset="blur"
+              duration={0.75}
+              delay={0.3}
+              className="col-span-full"
+            >
+              <div className="h-px origin-left bg-zinc-200/70 dark:bg-white/10" />
+            </Reveal>{" "}
             <Reveal preset="blur" duration={0.75} delay={0.4}>
               <InterestsList items={aboutData.interests} />
             </Reveal>
-
             <Reveal preset="blur" duration={0.75} delay={0.5}>
               <LanguagesList languages={languages} />
             </Reveal>
-
             <Reveal preset="blur" duration={0.75} delay={0.6}>
               <ToolTags tools={aboutData.tools} />
             </Reveal>
