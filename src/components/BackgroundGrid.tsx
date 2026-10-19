@@ -1,9 +1,13 @@
 "use client";
 
+import { FlightPaths } from "./FlightPaths";
+
 export function BackgroundGrid() {
   return (
     <>
       {/* Base grid */}
+      <FlightPaths />
+
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-0"

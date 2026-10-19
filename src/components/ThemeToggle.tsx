@@ -1,7 +1,15 @@
 "use client";
 
+import { useFlightPaths } from "@/components/FlightPaths";
 import { useRestartAnimations } from "@/components/Reveal";
-import { MonitorSmartphone, Moon, RotateCcw, Sun } from "lucide-react";
+import {
+  MonitorSmartphone,
+  Moon,
+  Pause,
+  Play,
+  RotateCcw,
+  Sun,
+} from "lucide-react";
 import { useEffect, useSyncExternalStore } from "react";
 
 type Theme = "system" | "light" | "dark";
@@ -69,6 +77,7 @@ export function ThemeToggle({
   );
 
   const restartAnimations = useRestartAnimations();
+  const { paused, toggle } = useFlightPaths();
 
   const systemPrefersDark = useSyncExternalStore(
     (callback) => {
@@ -102,6 +111,24 @@ export function ThemeToggle({
         className="cursor-pointer flex h-9 w-9 items-center justify-center rounded-xs text-zinc-500 transition-colors hover:bg-primary-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-primary-600/15 dark:hover:text-white"
       >
         <RotateCcw size={16} strokeWidth={1.8} />
+      </button>
+
+      <button
+        type="button"
+        onClick={() => {
+          toggle();
+          onChange?.();
+        }}
+        aria-label={paused ? "Resume animations" : "Pause animations"}
+        aria-pressed={paused}
+        title={paused ? "Resume animations" : "Pause animations"}
+        className="cursor-pointer flex h-9 w-9 items-center justify-center rounded-xs text-zinc-500 transition-colors hover:bg-primary-100 hover:text-zinc-950 dark:text-zinc-400 dark:hover:bg-primary-600/15 dark:hover:text-white"
+      >
+        {paused ? (
+          <Play size={16} strokeWidth={1.8} />
+        ) : (
+          <Pause size={16} strokeWidth={1.8} />
+        )}
       </button>
 
       <div className="mx-1 h-5 w-px bg-zinc-200 dark:bg-white/10" />
