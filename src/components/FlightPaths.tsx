@@ -255,7 +255,7 @@ export function FlightPaths() {
             {planes.map((plane) => (
               <div
                 key={plane.id}
-                className="absolute bg-primary-300 dark:bg-primary-700"
+                className="absolute bg-primary-600 dark:bg-primary-400"
                 style={{
                   width: PLANE_SIZE,
                   height: PLANE_SIZE,

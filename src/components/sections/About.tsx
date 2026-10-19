@@ -42,7 +42,7 @@ function TimelineEvent({
   return (
     <div className={`relative flex gap-4 ${last ? "" : "pb-6"}`}>
       <div className="flex w-3 shrink-0 flex-col items-center">
-        <span className="mt-1 size-2.5 shrink-0 rounded-full border-2 border-primary-500 bg-white dark:bg-neutral-950" />
+        <span className="mt-1 size-2.5 shrink-0 rounded-full border-2 border-primary-500 bg-white dark:bg-zinc-950" />
         {!last && (
           <span className="mt-2 w-px flex-1 bg-zinc-200 dark:bg-white/10" />
         )}
@@ -75,7 +75,7 @@ function Timeline({ events }: { events: TimelineEventType[] }) {
           {index === visibleEvents.length - 1 && hiddenCount > 0 && (
             <div className="relative ml-1.5 flex items-center gap-3 pb-6">
               <span className="h-5 w-px shrink-0 bg-zinc-200 dark:bg-white/10" />
-              <span className="rounded-sm border border-zinc-200/80 bg-zinc-50 px-2.5 py-1 font-martian text-[9px] tracking-wide text-zinc-500 dark:border-white/10 dark:bg-neutral-950 dark:text-zinc-400">
+              <span className="rounded-xs border border-zinc-200/80 bg-zinc-50 px-2.5 py-1 font-martian text-[9px] tracking-wide text-zinc-500 dark:border-white/10 dark:bg-zinc-950 dark:text-zinc-400">
                 +{hiddenCount} other elements
               </span>
             </div>
@@ -144,7 +144,7 @@ function ToolTags({ tools }: { tools: string[] }) {
         {tools.map((tool) => (
           <span
             key={tool}
-            className="shrink-0 rounded-sm border border-zinc-200/80 px-2.5 py-1.5 text-xs text-zinc-600 transition-colors duration-200 hover:border-primary-500/50 hover:text-primary-600 dark:border-white/10 dark:text-zinc-400 dark:hover:text-primary-400"
+            className="shrink-0 rounded-xs border border-zinc-200/80 px-2.5 py-1.5 text-xs text-zinc-600 transition-colors duration-200 hover:border-primary-500/50 hover:text-primary-600 dark:border-white/10 dark:text-zinc-400 dark:hover:border-primary-400/40 dark:hover:text-primary-400"
           >
             {tool}
           </span>
@@ -181,7 +181,7 @@ export function About() {
                   Hello<span className="text-primary-500">.</span>
                 </h2>
 
-                <div className="mt-5 rounded-sm border border-zinc-200/80 bg-zinc-50/75 p-4 sm:mt-7 sm:p-6 xl:p-8 dark:border-white/10 dark:bg-neutral-950/75">
+                <div className="mt-5 rounded-xs border border-zinc-200/80 bg-zinc-50/75 p-4 sm:mt-7 sm:p-6 xl:p-8 dark:border-white/10 dark:bg-zinc-950/75">
                   {/* Letter heading */}
                   <div className="flex items-center justify-between gap-4 border-b border-zinc-200/70 pb-4 dark:border-white/10">
                     <div className="flex items-center gap-3">

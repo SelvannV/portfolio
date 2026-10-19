@@ -22,7 +22,7 @@ export default function Home() {
             document.documentElement.style.setProperty("--x", `${e.clientX}px`);
             document.documentElement.style.setProperty("--y", `${e.clientY}px`);
           }}
-          className="relative isolate min-h-dvh bg-zinc-50 font-sans text-zinc-950 transition-colors duration-300 dark:bg-neutral-950 dark:text-white"
+          className="relative isolate min-h-dvh bg-zinc-50 font-sans text-zinc-950 transition-colors duration-300 dark:bg-zinc-950 dark:text-white"
         >
           <BackgroundGrid />
           <Menu />

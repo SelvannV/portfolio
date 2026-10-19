@@ -46,15 +46,15 @@ export function SplitFlap({
         <div
           key={`${character}-${index}`}
           aria-hidden="true"
-          className="relative shrink-0 overflow-hidden rounded-xs border border-neutral-900 text-white shadow-sm"
+          className="relative shrink-0 overflow-hidden rounded-xs border border-zinc-900 text-white shadow-sm"
           style={{
             width: tileWidth,
             height: tileHeight,
           }}
         >
           {/* Background halves */}
-          <div className="absolute inset-x-0 top-0 h-1/2 bg-neutral-800" />
-          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-neutral-900" />
+          <div className="absolute inset-x-0 top-0 h-1/2 bg-zinc-800" />
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-zinc-900" />
 
           {/* Character — drawn once */}
           <span

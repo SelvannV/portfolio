@@ -21,11 +21,13 @@ function MenuButton({
       onClick={onClick}
       aria-current={active ? "location" : undefined}
       className={`cursor-pointer group relative isolate w-fit shrink-0 overflow-hidden px-2 py-2 text-left text-[clamp(0.65rem,0.8vw,1rem)] uppercase tracking-wide transition-transform duration-150 ease-in-out active:scale-95 ${
-        active ? "text-white dark:text-black" : "text-black dark:text-white"
+        active
+          ? "text-white dark:text-zinc-950"
+          : "text-zinc-950 dark:text-white"
       }`}
     >
       <span
-        className={`absolute inset-0 -z-10 origin-left bg-black transition-transform duration-300 ease-out dark:bg-white ${
+        className={`absolute inset-0 -z-10 origin-left bg-zinc-950 transition-transform duration-300 ease-out dark:bg-white ${
           active ? "scale-x-100" : "scale-x-0"
         }`}
       />
@@ -141,14 +143,14 @@ export function Menu() {
       {/* Mobile navigation */}
       <div className="fixed inset-x-0 top-3 z-40 px-4 md:hidden">
         <div className="relative mx-auto max-w-md">
-          <div className="flex items-center justify-between border-b border-zinc-300/40 bg-zinc-50/65 px-2 py-2 backdrop-blur-xl dark:border-white/10 dark:bg-neutral-950/65">
+          <div className="flex items-center justify-between border border-zinc-200/80 bg-zinc-50/75 px-2 py-2 backdrop-blur-md rounded-xs shadow-xs dark:border-white/10 dark:bg-zinc-950/75">
             <button
               type="button"
               onClick={() => navigateTo(activeItem)}
               className="flex min-w-0 items-center gap-3 px-2 py-2 text-left font-martian text-xs uppercase tracking-wider"
               aria-label={`Current section: ${activeLabel}`}
             >
-              <span className="text-zinc-500">
+              <span className="text-zinc-500 dark:text-zinc-400">
                 {String(activeIndex).padStart(2, "0")}
               </span>
               <span className="truncate text-zinc-950 dark:text-white">
@@ -195,7 +197,7 @@ export function Menu() {
             }`}
           >
             <nav className="overflow-hidden">
-              <div className="border border-zinc-200/40 bg-zinc-50/65 p-3 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-neutral-950/65  rounded-xs">
+              <div className="border border-zinc-200/80 bg-zinc-50/75 p-3 shadow-lg backdrop-blur-md rounded-xs dark:border-white/10 dark:bg-zinc-950/75">
                 <div className="flex flex-col items-start gap-1 font-martian">
                   {MENU.map((label, index) => (
                     <MenuButton

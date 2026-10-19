@@ -13,7 +13,7 @@ export default function NotFound() {
   return (
     <AnimationRestartProvider>
       <FlightPathsProvider>
-        <main className="relative isolate min-h-dvh overflow-hidden bg-zinc-50 font-sans text-zinc-950 dark:bg-neutral-950 dark:text-white">
+        <main className="relative isolate min-h-dvh overflow-hidden bg-zinc-50 font-sans text-zinc-950 transition-colors duration-300 dark:bg-zinc-950 dark:text-white">
           <BackgroundGrid />
 
           <SectionLayout

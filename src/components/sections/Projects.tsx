@@ -8,7 +8,7 @@ import { SectionLayout } from "./SectionLayout";
 
 const TAG_STYLES: Record<Project["tags"][number], string> = {
   archived:
-    "border-zinc-300 bg-zinc-100 text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-300",
+    "border-zinc-200 bg-zinc-50 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-400",
   live: "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-400",
   "in progress":
     "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-900 dark:bg-amber-950/50 dark:text-amber-400",
@@ -43,8 +43,8 @@ function ProjectImage({
 
   if (!src || src === "__FORCE_PLACEHOLDER__" || failed) {
     return (
-      <div className="absolute inset-0 flex items-center justify-center overflow-hidden bg-zinc-100 dark:bg-[#111113]">
-        <span className="absolute -right-3 -top-10 select-none text-[11rem] font-medium leading-none tracking-[-0.12em] text-zinc-200 dark:text-white/4.5">
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden bg-zinc-100 dark:bg-zinc-900">
+        <span className="absolute -right-3 -top-10 select-none text-[11rem] font-medium leading-none tracking-[-0.12em] text-zinc-200 dark:text-white/5">
           {String(number).padStart(2, "0")}
         </span>
 
@@ -55,7 +55,7 @@ function ProjectImage({
           </span>
         </div>
 
-        <div className="absolute bottom-4 left-5 right-5 h-px bg-zinc-300/70 dark:bg-white/10" />
+        <div className="absolute bottom-4 left-5 right-5 h-px bg-zinc-200/70 dark:bg-white/10" />
       </div>
     );
   }
@@ -143,7 +143,7 @@ function ProjectStack({ stack }: { stack: string[] }) {
         {uniqueStack.slice(0, visibleCount).map((technology) => (
           <span
             key={technology}
-            className="shrink-0 rounded-sm border border-zinc-200 px-2 py-1 text-[11px] text-zinc-600 dark:border-white/10 dark:text-zinc-400"
+            className="shrink-0 rounded-xs border border-zinc-200/80 px-2 py-1 text-[11px] text-zinc-600 dark:border-white/10 dark:text-zinc-400"
           >
             {technology}
           </span>
@@ -152,7 +152,7 @@ function ProjectStack({ stack }: { stack: string[] }) {
         {hiddenStack.length > 0 && (
           <button
             type="button"
-            className="shrink-0 cursor-help rounded-sm border border-zinc-200 px-2 py-1 text-[11px] text-zinc-500 dark:border-white/10 dark:text-zinc-400"
+            className="shrink-0 cursor-help rounded-xs border border-zinc-200/80 px-2 py-1 text-[11px] text-zinc-500 transition-colors hover:border-primary-500/50 hover:text-primary-600 dark:border-white/10 dark:text-zinc-400 dark:hover:border-primary-400/40 dark:hover:text-primary-400"
             aria-label={`Show hidden technologies: ${hiddenStack.join(", ")}`}
             onClick={() => setShowTooltip((visible) => !visible)}
           >
@@ -168,13 +168,13 @@ function ProjectStack({ stack }: { stack: string[] }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 4 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute bottom-full left-0 z-50 mb-2 max-w-64 rounded-sm border border-zinc-200 bg-white p-2 shadow-lg dark:border-white/10 dark:bg-neutral-900"
+            className="absolute bottom-full left-0 z-50 mb-2 max-w-64 rounded-xs border border-zinc-200/80 bg-zinc-50 p-2 shadow-lg dark:border-white/10 dark:bg-zinc-900"
           >
             <div className="flex flex-wrap gap-1.5">
               {hiddenStack.map((technology) => (
                 <span
                   key={technology}
-                  className="rounded-sm border border-zinc-200 px-2 py-1 text-[11px] text-zinc-600 dark:border-white/10 dark:text-zinc-300"
+                  className="rounded-xs border border-zinc-200/80 px-2 py-1 text-[11px] text-zinc-600 dark:border-white/10 dark:text-zinc-400"
                 >
                   {technology}
                 </span>
@@ -192,14 +192,14 @@ function ProjectStack({ stack }: { stack: string[] }) {
         {uniqueStack.map((technology) => (
           <span
             key={technology}
-            className="shrink-0 rounded-sm border px-2 py-1 text-[11px]"
+            className="shrink-0 rounded-xs border px-2 py-1 text-[11px]"
           >
             {technology}
           </span>
         ))}
         <span
           data-more
-          className="shrink-0 rounded-sm border px-2 py-1 text-[11px]"
+          className="shrink-0 rounded-xs border px-2 py-1 text-[11px]"
         >
           +{uniqueStack.length}
         </span>
@@ -211,12 +211,12 @@ function ProjectStack({ stack }: { stack: string[] }) {
 function ProjectCard({ project, index }: { project?: Project; index: number }) {
   if (!project) {
     return (
-      <article className="relative flex min-h-48 flex-1 flex-col items-center justify-center overflow-hidden rounded-sm border border-zinc-200/80 dark:border-white/10">
+      <article className="relative flex min-h-48 flex-1 flex-col items-center justify-center overflow-hidden rounded-xs border border-zinc-200/80 dark:border-white/10">
         <div className="absolute inset-0 scale-105">
           <div className="absolute inset-0 bg-zinc-200/70 blur-xl dark:bg-white/6" />
         </div>
 
-        <div className="absolute inset-0 bg-zinc-100/60 backdrop-blur-md dark:bg-neutral-950/60" />
+        <div className="absolute inset-0 bg-zinc-100/60 backdrop-blur-md dark:bg-zinc-950/60" />
 
         <div className="relative flex flex-1 flex-col items-center justify-center gap-2 p-5 text-center">
           <span className="font-martian text-[10px] uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
@@ -237,7 +237,7 @@ function ProjectCard({ project, index }: { project?: Project; index: number }) {
   const showImage = Boolean(project.image) && (isMain || isSecondary);
 
   return (
-    <article className="group relative flex min-w-0 flex-1 flex-col overflow-hidden rounded-sm border border-zinc-200/80 bg-zinc-50/75 transition-colors hover:border-primary-400/60 dark:border-white/10 dark:bg-neutral-950/75 dark:hover:border-primary-400/40">
+    <article className="group relative flex min-w-0 flex-1 flex-col overflow-hidden rounded-xs border border-zinc-200/80 bg-zinc-50/75 transition-colors hover:border-primary-400/60 dark:border-white/10 dark:bg-zinc-950/75 dark:hover:border-primary-400/40">
       {showImage && isMain && (
         <div className="relative min-h-28 flex-1 overflow-hidden border-b border-zinc-200/80 bg-zinc-100/70 dark:border-white/10 dark:bg-white/3">
           <ProjectImage
@@ -254,7 +254,7 @@ function ProjectCard({ project, index }: { project?: Project; index: number }) {
             {unique(project.tags).map((tag) => (
               <span
                 key={tag}
-                className={`shrink-0 rounded-sm border px-2 py-1 font-martian text-[9px] uppercase tracking-[0.15em] ${TAG_STYLES[tag]}`}
+                className={`shrink-0 rounded-xs border px-2 py-1 font-martian text-[9px] uppercase tracking-[0.15em] ${TAG_STYLES[tag]}`}
               >
                 {tag}
               </span>
@@ -280,7 +280,7 @@ function ProjectCard({ project, index }: { project?: Project; index: number }) {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="shrink-0 whitespace-nowrap text-sm text-zinc-600 underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-primary-500 dark:text-zinc-400 dark:decoration-zinc-700 dark:hover:text-primary-400"
+                  className="shrink-0 whitespace-nowrap text-sm text-zinc-600 underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-primary-600 hover:decoration-primary-600 dark:text-zinc-400 dark:decoration-zinc-700 dark:hover:text-primary-400 dark:hover:decoration-primary-400"
                 >
                   {label} ↗
                 </a>
