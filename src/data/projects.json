@@ -28,6 +28,7 @@
     "description": "My own portfolio to showcase my work.",
     "image": "__FORCE_PLACEHOLDER__",
     "links": {
+      "GitHub": "https://github.com/SelvannV/portfolio",
       "Website": "/"
     },
     "stack": [

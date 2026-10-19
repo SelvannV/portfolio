@@ -1,0 +1,25 @@
+{
+  "email": "selvann.veerapen@gmail.com",
+  "professional": [
+    {
+      "text": "LinkedIn",
+      "description": "Connect professionally",
+      "link": "https://www.linkedin.com/in/your-profile",
+      "icon": "linkedin"
+    },
+    {
+      "text": "GitHub",
+      "description": "Discover more of my work",
+      "link": "https://github.com/SelvannV",
+      "icon": "github"
+    }
+  ],
+  "socials": [
+    {
+      "text": "Instagram",
+      "link": "https://www.instagram.com/selvann.v",
+      "icon": "instagram",
+      "accent": "#E1306C"
+    }
+  ]
+}
