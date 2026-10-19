@@ -11,8 +11,11 @@ export function Introduction() {
     >
       <div className="flex w-full flex-1 flex-col items-center justify-center text-center">
         <Reveal preset="scale" duration={0.75} delay={0.3} className="w-full">
+          {/* <div className="flex justify-center">
+            <SplitFlap text="FLIGHT LOG 001" size="xs" />
+          </div> */}
           <p className="font-martian text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-400 sm:text-sm">
-            Welcome to my portfolio
+            Welcome aboard
           </p>
 
           <h1 className="mx-auto mt-6 max-w-5xl select-text text-5xl font-medium leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">

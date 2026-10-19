@@ -72,19 +72,12 @@ export function SectionLayout({
             </div>
           )}
 
-          {/* Show indicator text whenever provided */}
           {indicatorText && (
             <p className="w-full font-martian text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
               {indicatorText}
             </p>
           )}
 
-          {/*
-            Arrow visibility:
-            - Never show when end or endText exists.
-            - Show when indicatorText exists, on mobile and desktop.
-            - Without indicatorText, show only on desktop.
-          */}
           <svg
             aria-hidden="true"
             width="16"
