@@ -4,24 +4,8 @@ import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "../Reveal";
+import { Badge, Card, Divider, Heading, SectionLabel } from "../ui";
 import { SectionLayout } from "./SectionLayout";
-
-const TAG_STYLES: Record<Project["tags"][number], string> = {
-  archived:
-    "border-zinc-200 bg-zinc-50 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-400",
-  live: "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-400",
-  "in progress":
-    "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-900 dark:bg-amber-950/50 dark:text-amber-400",
-  new: "border-primary-200 bg-primary-50 text-primary-700 dark:border-primary-900 dark:bg-primary-950/50 dark:text-primary-400",
-  deprecated:
-    "border-red-200 bg-red-50 text-red-700 dark:border-red-900 dark:bg-red-950/50 dark:text-red-400",
-  "open source":
-    "border-lime-200 bg-lime-50 text-lime-700 dark:border-lime-900 dark:bg-lime-950/50 dark:text-lime-400",
-  featured:
-    "border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-900 dark:bg-rose-950/50 dark:text-rose-400",
-  experimental:
-    "border-cyan-200 bg-cyan-50 text-cyan-700 dark:border-cyan-900 dark:bg-cyan-950/50 dark:text-cyan-400",
-};
 
 const projects = projectsData as unknown as Project[];
 const TOTAL_PROJECT_SLOTS = 7;
@@ -50,12 +34,12 @@ function ProjectImage({
 
         <div className="relative flex items-center gap-4">
           <span className="h-12 w-px rotate-25 bg-primary-500/70" />
-          <span className="font-martian text-[10px] uppercase tracking-[0.25em] text-zinc-500 dark:text-zinc-400">
+          <SectionLabel size="xs" className="tracking-[0.25em]">
             Project {String(number).padStart(2, "0")}
-          </span>
+          </SectionLabel>
         </div>
 
-        <div className="absolute bottom-4 left-5 right-5 h-px bg-zinc-200/70 dark:bg-white/10" />
+        <Divider className="absolute bottom-4 left-5 right-5" />
       </div>
     );
   }
@@ -141,23 +125,23 @@ function ProjectStack({ stack }: { stack: string[] }) {
     >
       <div className="flex flex-nowrap items-center gap-1.5 overflow-hidden">
         {uniqueStack.slice(0, visibleCount).map((technology) => (
-          <span
-            key={technology}
-            className="shrink-0 rounded-xs border border-zinc-200/80 px-2 py-1 text-[11px] text-zinc-600 dark:border-white/10 dark:text-zinc-400"
-          >
+          <Badge key={technology} size="sm">
             {technology}
-          </span>
+          </Badge>
         ))}
 
         {hiddenStack.length > 0 && (
-          <button
+          <Badge
+            as="button"
             type="button"
-            className="shrink-0 cursor-help rounded-xs border border-zinc-200/80 px-2 py-1 text-[11px] text-zinc-500 transition-colors hover:border-primary-500/50 hover:text-primary-600 dark:border-white/10 dark:text-zinc-400 dark:hover:border-primary-400/40 dark:hover:text-primary-400"
+            size="sm"
+            interactive
+            className="cursor-help text-zinc-500"
             aria-label={`Show hidden technologies: ${hiddenStack.join(", ")}`}
             onClick={() => setShowTooltip((visible) => !visible)}
           >
             +{hiddenStack.length}
-          </button>
+          </Badge>
         )}
       </div>
 
@@ -168,18 +152,17 @@ function ProjectStack({ stack }: { stack: string[] }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 4 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute bottom-full left-0 z-50 mb-2 max-w-64 rounded-xs border border-zinc-200/80 bg-zinc-50 p-2 shadow-lg dark:border-white/10 dark:bg-zinc-900"
+            className="absolute bottom-full left-0 z-50 mb-2 max-w-64"
           >
-            <div className="flex flex-wrap gap-1.5">
-              {hiddenStack.map((technology) => (
-                <span
-                  key={technology}
-                  className="rounded-xs border border-zinc-200/80 px-2 py-1 text-[11px] text-zinc-600 dark:border-white/10 dark:text-zinc-400"
-                >
-                  {technology}
-                </span>
-              ))}
-            </div>
+            <Card className="p-2 shadow-lg dark:bg-zinc-900">
+              <div className="flex flex-wrap gap-1.5">
+                {hiddenStack.map((technology) => (
+                  <Badge key={technology} size="sm">
+                    {technology}
+                  </Badge>
+                ))}
+              </div>
+            </Card>
           </motion.div>
         )}
       </AnimatePresence>
@@ -211,7 +194,10 @@ function ProjectStack({ stack }: { stack: string[] }) {
 function ProjectCard({ project, index }: { project?: Project; index: number }) {
   if (!project) {
     return (
-      <article className="relative flex min-h-48 flex-1 flex-col items-center justify-center overflow-hidden rounded-xs border border-zinc-200/80 dark:border-white/10">
+      <Card
+        as="article"
+        className="relative flex min-h-48 flex-1 flex-col items-center justify-center overflow-hidden"
+      >
         <div className="absolute inset-0 scale-105">
           <div className="absolute inset-0 bg-zinc-200/70 blur-xl dark:bg-white/6" />
         </div>
@@ -219,14 +205,18 @@ function ProjectCard({ project, index }: { project?: Project; index: number }) {
         <div className="absolute inset-0 bg-zinc-100/60 backdrop-blur-md dark:bg-zinc-950/60" />
 
         <div className="relative flex flex-1 flex-col items-center justify-center gap-2 p-5 text-center">
-          <span className="font-martian text-[10px] uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
+          <SectionLabel size="xs" className="tracking-[0.2em]">
             In the works
-          </span>
-          <h3 className="text-xl font-medium tracking-tight text-zinc-800 dark:text-zinc-100">
-            More to come<span className="text-primary-500">.</span>
-          </h3>
+          </SectionLabel>
+          <Heading
+            as="h3"
+            dot
+            className="text-xl text-zinc-800 dark:text-zinc-100"
+          >
+            More to come
+          </Heading>
         </div>
-      </article>
+      </Card>
     );
   }
 
@@ -237,7 +227,11 @@ function ProjectCard({ project, index }: { project?: Project; index: number }) {
   const showImage = Boolean(project.image) && (isMain || isSecondary);
 
   return (
-    <article className="group relative flex min-w-0 flex-1 flex-col overflow-hidden rounded-xs border border-zinc-200/80 bg-zinc-50/75 transition-colors hover:border-primary-400/60 dark:border-white/10 dark:bg-zinc-950/75 dark:hover:border-primary-400/40">
+    <Card
+      as="article"
+      interactive
+      className="group relative flex min-w-0 flex-1 flex-col overflow-hidden"
+    >
       {showImage && isMain && (
         <div className="relative min-h-28 flex-1 overflow-hidden border-b border-zinc-200/80 bg-zinc-100/70 dark:border-white/10 dark:bg-white/3">
           <ProjectImage
@@ -252,12 +246,9 @@ function ProjectCard({ project, index }: { project?: Project; index: number }) {
         <div className="flex min-w-0 flex-1 flex-col gap-2 p-3 sm:gap-3 sm:p-4 lg:p-5">
           <div className="flex flex-nowrap items-center gap-2 overflow-hidden">
             {unique(project.tags).map((tag) => (
-              <span
-                key={tag}
-                className={`shrink-0 rounded-xs border px-2 py-1 font-martian text-[9px] uppercase tracking-[0.15em] ${TAG_STYLES[tag]}`}
-              >
+              <Badge key={tag} tag={tag} size="xs">
                 {tag}
-              </span>
+              </Badge>
             ))}
           </div>
           <div>
@@ -299,7 +290,7 @@ function ProjectCard({ project, index }: { project?: Project; index: number }) {
           </div>
         )}
       </div>
-    </article>
+    </Card>
   );
 }
 
@@ -325,10 +316,9 @@ export function Projects() {
         <div className="mx-auto w-full max-w-6xl">
           <Reveal preset="blur" duration={0.75} delay={0.1}>
             <div className="mb-8">
-              <h2 className="text-3xl font-medium tracking-tight sm:text-4xl md:text-5xl">
+              <Heading as="h2" dot className="text-3xl sm:text-4xl md:text-5xl">
                 My projects
-                <span className="text-primary-500">.</span>
-              </h2>
+              </Heading>
             </div>
           </Reveal>
 

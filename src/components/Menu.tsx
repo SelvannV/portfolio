@@ -1,5 +1,6 @@
 "use client";
 
+import { Card } from "@/components/ui";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -143,7 +144,7 @@ export function Menu() {
       {/* Mobile navigation */}
       <div className="fixed inset-x-0 top-3 z-40 px-4 md:hidden">
         <div className="relative mx-auto max-w-md">
-          <div className="flex items-center justify-between border border-zinc-200/80 bg-zinc-50/75 px-2 py-2 backdrop-blur-md rounded-xs shadow-xs dark:border-white/10 dark:bg-zinc-950/75">
+          <Card className="flex items-center justify-between px-2 py-2 shadow-xs">
             <button
               type="button"
               onClick={() => navigateTo(activeItem)}
@@ -184,7 +185,7 @@ export function Menu() {
                 />
               </span>
             </button>
-          </div>
+          </Card>
 
           {/* Animated dropdown */}
           <div
@@ -197,7 +198,7 @@ export function Menu() {
             }`}
           >
             <nav className="overflow-hidden">
-              <div className="border border-zinc-200/80 bg-zinc-50/75 p-3 shadow-lg backdrop-blur-md rounded-xs dark:border-white/10 dark:bg-zinc-950/75">
+              <Card className="p-3 shadow-lg">
                 <div className="flex flex-col items-start gap-1 font-martian">
                   {MENU.map((label, index) => (
                     <MenuButton
@@ -212,7 +213,7 @@ export function Menu() {
                 <div className="mt-4 flex justify-center">
                   <ThemeToggle onChange={() => setMenuOpen(false)} />
                 </div>
-              </div>
+              </Card>
             </nav>
           </div>
         </div>

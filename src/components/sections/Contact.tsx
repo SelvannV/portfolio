@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/Reveal";
+import { Card, Heading, SectionLabel } from "@/components/ui";
 import contact from "@/data/contact.json";
 import {
   ArrowUpRight,
@@ -124,10 +125,13 @@ export function Contact() {
       <div className="flex w-full flex-1 flex-col items-center justify-center px-6 py-16">
         <div className="w-full max-w-3xl">
           <Reveal preset="blur" delay={0.1}>
-            <h2 className="text-4xl font-medium tracking-tight text-zinc-950 sm:text-6xl dark:text-white">
+            <Heading
+              as="h2"
+              dot
+              className="text-4xl text-zinc-950 sm:text-6xl dark:text-white"
+            >
               Get in touch
-              <span className="text-primary-500">.</span>
-            </h2>
+            </Heading>
           </Reveal>
 
           <Reveal preset="blur" delay={0.2}>
@@ -158,9 +162,9 @@ export function Contact() {
           {PROFESSIONAL_LINKS.length > 0 && (
             <Reveal preset="blur" delay={0.4}>
               <div className="mt-16">
-                <h3 className="mb-4 font-martian text-xs uppercase tracking-[0.15em] text-zinc-500 dark:text-zinc-400">
+                <SectionLabel as="h3" className="mb-4">
                   Professional
-                </h3>
+                </SectionLabel>
 
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {PROFESSIONAL_LINKS.map((item, index) => {
@@ -168,10 +172,10 @@ export function Contact() {
                       ? BRAND_ICONS[item.icon.toLowerCase()]
                       : undefined;
 
-                    const Wrapper = item.link ? "a" : "div";
-
                     return (
-                      <Wrapper
+                      <Card
+                        as={item.link ? "a" : "div"}
+                        interactive={Boolean(item.link)}
                         key={`${item.text}-${index}`}
                         {...(item.link
                           ? {
@@ -180,11 +184,7 @@ export function Contact() {
                               rel: "noopener noreferrer",
                             }
                           : {})}
-                        className={`group flex min-w-0 items-center gap-3 rounded-xs border border-zinc-200/80 bg-zinc-50/75 p-3 transition-colors sm:gap-4 sm:p-4 dark:border-white/10 dark:bg-zinc-950/75 ${
-                          item.link
-                            ? "hover:border-primary-400/60 dark:hover:border-primary-400/40"
-                            : "cursor-default"
-                        }`}
+                        className="group flex min-w-0 items-center gap-3 p-3 sm:gap-4 sm:p-4"
                       >
                         <div className="flex size-10 shrink-0 items-center justify-center rounded-xs border border-zinc-200/80 bg-zinc-100/70 text-zinc-600 transition-colors group-hover:border-primary-300/60 group-hover:bg-primary-50 group-hover:text-primary-700 dark:border-white/10 dark:bg-white/3 dark:text-zinc-300 dark:group-hover:border-primary-400/30 dark:group-hover:bg-primary-400/10 dark:group-hover:text-primary-300">
                           {Icon ? (
@@ -210,7 +210,7 @@ export function Contact() {
                             className="shrink-0 text-zinc-400 transition-colors group-hover:text-primary-600 dark:text-zinc-500 dark:group-hover:text-primary-400"
                           />
                         )}
-                      </Wrapper>
+                      </Card>
                     );
                   })}
                 </div>
@@ -221,9 +221,9 @@ export function Contact() {
           {SOCIAL_LINKS.length > 0 && (
             <Reveal preset="blur" delay={0.5}>
               <div className="mt-10">
-                <h3 className="mb-4 font-martian text-xs uppercase tracking-[0.15em] text-zinc-500 dark:text-zinc-400">
+                <SectionLabel as="h3" className="mb-4">
                   Socials
-                </h3>
+                </SectionLabel>
 
                 <div className="flex flex-wrap items-center gap-3">
                   {SOCIAL_LINKS.map((item, index) => {
@@ -231,10 +231,9 @@ export function Contact() {
                       ? BRAND_ICONS[item.icon.toLowerCase()]
                       : undefined;
 
-                    const Wrapper = item.link ? "a" : "div";
-
                     return (
-                      <Wrapper
+                      <Card
+                        as={item.link ? "a" : "div"}
                         key={`${item.text}-${index}`}
                         {...(item.link
                           ? {
@@ -250,7 +249,7 @@ export function Contact() {
                             "--social-color": item.accent || "#ffffff",
                           } as CSSProperties
                         }
-                        className={`inline-flex items-center gap-2 rounded-xs border border-zinc-200/80 bg-zinc-50/75 p-2 text-sm font-medium text-zinc-900 transition-colors dark:border-white/10 dark:bg-zinc-950/75 dark:text-zinc-100 ${
+                        className={`inline-flex items-center gap-2 p-2 text-sm font-medium text-zinc-900 dark:text-zinc-100 ${
                           item.link
                             ? "hover:border-(--social-color) hover:bg-[color-mix(in_srgb,var(--social-color)_10%,transparent)] hover:text-(--social-color) dark:hover:bg-[color-mix(in_srgb,var(--social-color)_15%,transparent)]"
                             : "cursor-default"
@@ -258,7 +257,7 @@ export function Contact() {
                       >
                         {Icon && <BrandIcon icon={Icon} size={16} />}
                         {item.text && <span>{item.text}</span>}
-                      </Wrapper>
+                      </Card>
                     );
                   })}
                 </div>

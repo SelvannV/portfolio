@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Reveal } from "../Reveal";
 import { Section } from "../Section";
+import { SectionLabel } from "../ui";
 
 type SectionLayoutProps = {
   id: string;
@@ -12,9 +13,6 @@ type SectionLayoutProps = {
   end?: string;
   showFooter?: boolean;
 };
-
-const labelStyle =
-  "font-martian text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400";
 
 export function SectionLayout({
   id,
@@ -47,7 +45,7 @@ export function SectionLayout({
           delay={0.2}
           className="absolute top-8 hidden md:flex"
         >
-          <p className={labelStyle}>{label}</p>
+          <SectionLabel size="sm">{label}</SectionLabel>
         </Reveal>
 
         {children}
@@ -61,7 +59,7 @@ export function SectionLayout({
           >
             {(end || endText) && (
               <div className="flex items-center justify-center gap-3">
-                {endText && <p className={labelStyle}>{endText}</p>}
+                {endText && <SectionLabel size="sm">{endText}</SectionLabel>}
 
                 {end && (
                   <button
@@ -76,9 +74,9 @@ export function SectionLayout({
             )}
 
             {indicatorText && (
-              <p className="w-full font-martian text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+              <SectionLabel size="sm" className="w-full">
                 {indicatorText}
-              </p>
+              </SectionLabel>
             )}
 
             <svg

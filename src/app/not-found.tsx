@@ -3,11 +3,9 @@ import { FlightPathsProvider } from "@/components/FlightPaths";
 import { AnimationRestartProvider, Reveal } from "@/components/Reveal";
 import { SectionLayout } from "@/components/sections/SectionLayout";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { AccentDot, Heading, SectionLabel } from "@/components/ui";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-
-const labelStyle =
-  "font-martian text-[10px] uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400";
 
 export default function NotFound() {
   return (
@@ -25,16 +23,19 @@ export default function NotFound() {
             <div className="flex w-full flex-1 flex-col items-center justify-center px-6 py-16">
               <div className="relative z-10 mx-auto w-full max-w-3xl">
                 <Reveal preset="blur" duration={0.75} delay={0.3}>
-                  <p className={labelStyle}>
-                    404 <span className="text-primary-500">—</span> Page not
-                    found
-                  </p>
+                  <SectionLabel size="xs">
+                    404 <AccentDot char="—" /> Page not found
+                  </SectionLabel>
                 </Reveal>
 
                 <Reveal preset="rise" duration={0.8} delay={0.4}>
-                  <h1 className="mt-6 text-7xl leading-none font-medium tracking-tight sm:text-9xl">
-                    404<span className="text-primary-500">.</span>
-                  </h1>
+                  <Heading
+                    as="h1"
+                    dot
+                    className="mt-6 text-7xl leading-none sm:text-9xl"
+                  >
+                    404
+                  </Heading>
                 </Reveal>
 
                 <Reveal preset="rise" duration={0.75} delay={0.55}>

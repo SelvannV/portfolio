@@ -6,12 +6,10 @@ import type {
   TimelineEvent as TimelineEventType,
 } from "@/types/about";
 import { Reveal } from "../Reveal";
+import { AccentDot, Badge, Card, Divider, Heading, SectionLabel } from "../ui";
 import { SectionLayout } from "./SectionLayout";
 
 const aboutData: AboutData = aboutJson;
-
-const labelStyle =
-  "font-martian text-[10px] uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400";
 
 function formatDate(date: string) {
   const [day, month, year] = date.split("-");
@@ -26,9 +24,9 @@ function SectionTitle({
   count: number;
 }) {
   return (
-    <p className={labelStyle}>
-      {children} <span className="text-primary-500">({count})</span>
-    </p>
+    <SectionLabel size="xs" count={count}>
+      {children}
+    </SectionLabel>
   );
 }
 
@@ -75,9 +73,9 @@ function Timeline({ events }: { events: TimelineEventType[] }) {
           {index === visibleEvents.length - 1 && hiddenCount > 0 && (
             <div className="relative ml-1.5 flex items-center gap-3 pb-6">
               <span className="h-5 w-px shrink-0 bg-zinc-200 dark:bg-white/10" />
-              <span className="rounded-xs border border-zinc-200/80 bg-zinc-50 px-2.5 py-1 font-martian text-[9px] tracking-wide text-zinc-500 dark:border-white/10 dark:bg-zinc-950 dark:text-zinc-400">
+              <Badge variant="subtle" size="xs">
                 +{hiddenCount} other elements
-              </span>
+              </Badge>
             </div>
           )}
 
@@ -142,12 +140,9 @@ function ToolTags({ tools }: { tools: string[] }) {
 
       <div className="mt-4 flex flex-wrap items-center gap-2">
         {tools.map((tool) => (
-          <span
-            key={tool}
-            className="shrink-0 rounded-xs border border-zinc-200/80 px-2.5 py-1.5 text-xs text-zinc-600 transition-colors duration-200 hover:border-primary-500/50 hover:text-primary-600 dark:border-white/10 dark:text-zinc-400 dark:hover:border-primary-400/40 dark:hover:text-primary-400"
-          >
+          <Badge key={tool} size="md" interactive>
             {tool}
-          </span>
+          </Badge>
         ))}
       </div>
     </div>
@@ -177,20 +172,24 @@ export function About() {
               className="lg:col-span-2"
             >
               <div>
-                <h2 className="mt-3 text-3xl leading-[1.1] font-medium tracking-tight sm:mt-5 sm:text-4xl lg:text-5xl xl:text-6xl">
-                  Hello<span className="text-primary-500">.</span>
-                </h2>
+                <Heading
+                  as="h2"
+                  dot
+                  className="mt-3 text-3xl leading-[1.1] sm:mt-5 sm:text-4xl lg:text-5xl xl:text-6xl"
+                >
+                  Hello
+                </Heading>
 
-                <div className="mt-5 rounded-xs border border-zinc-200/80 bg-zinc-50/75 p-4 sm:mt-7 sm:p-6 xl:p-8 dark:border-white/10 dark:bg-zinc-950/75">
+                <Card className="mt-5 p-4 sm:mt-7 sm:p-6 xl:p-8">
                   {/* Letter heading */}
                   <div className="flex items-center justify-between gap-4 border-b border-zinc-200/70 pb-4 dark:border-white/10">
                     <div className="flex items-center gap-3">
                       <span className="h-4 w-0.5 rounded-full bg-primary-500" />
-                      <p className={labelStyle}>A little about me</p>
+                      <SectionLabel size="xs">A little about me</SectionLabel>
                     </div>
 
                     <span className="font-martian text-[10px] text-zinc-400 dark:text-zinc-500">
-                      NOTE <span className="text-primary-500">No. 01</span>
+                      NOTE <AccentDot>No. 01</AccentDot>
                     </span>
                   </div>
 
@@ -205,7 +204,7 @@ export function About() {
                   <div className="mt-8 flex justify-end border-t border-zinc-200/70 pt-5 dark:border-white/10">
                     <div className="text-right">
                       <p className="font-serif text-3xl italic tracking-tight text-zinc-800 dark:text-zinc-200">
-                        Selvann<span className="text-primary-500">.</span>
+                        Selvann<AccentDot />
                       </p>
 
                       <p className="mt-2 font-martian text-[9px] uppercase tracking-[0.16em] text-zinc-400 dark:text-zinc-500">
@@ -213,7 +212,7 @@ export function About() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </Card>
               </div>
             </Reveal>
             {sortedTimeline.length > 0 && (
@@ -224,7 +223,7 @@ export function About() {
                 className="lg:col-start-3"
               >
                 <div className="lg:pt-5">
-                  <p className={labelStyle}>Timeline</p>
+                  <SectionLabel size="xs">Timeline</SectionLabel>
                   <Timeline events={sortedTimeline} />
                 </div>
               </Reveal>
@@ -239,7 +238,7 @@ export function About() {
               delay={0.3}
               className="col-span-full"
             >
-              <div className="h-px origin-left bg-zinc-200/70 dark:bg-white/10" />
+              <Divider className="origin-left" />
             </Reveal>{" "}
             <Reveal preset="blur" duration={0.75} delay={0.4}>
               <InterestsList items={aboutData.interests} />

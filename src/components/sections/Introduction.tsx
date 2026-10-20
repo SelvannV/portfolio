@@ -1,4 +1,5 @@
 import { Reveal } from "../Reveal";
+import { Heading, SectionLabel } from "../ui";
 import { SectionLayout } from "./SectionLayout";
 
 export function Introduction() {
@@ -14,16 +15,19 @@ export function Introduction() {
           {/* <div className="flex justify-center">
             <SplitFlap text="FLIGHT LOG 001" size="xs" />
           </div> */}
-          <p className="font-martian text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-400 sm:text-sm">
+          <SectionLabel size="sm" className="tracking-widest sm:text-sm">
             Welcome aboard
-          </p>
+          </SectionLabel>
 
-          <h1 className="mx-auto mt-6 max-w-5xl select-text text-5xl font-medium leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+          <Heading
+            as="h1"
+            className="mx-auto mt-6 max-w-5xl select-text text-5xl leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl"
+          >
             Hello, I'm{" "}
             <span className="whitespace-nowrap bg-linear-to-b from-primary-500 to-primary-700 bg-clip-text text-transparent dark:from-primary-400 dark:to-primary-600">
               Selvann V
             </span>
-          </h1>
+          </Heading>
 
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400 sm:mt-8 sm:text-lg">
             French student & Developper

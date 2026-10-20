@@ -62,8 +62,8 @@ const PRESETS = {
     animate: { opacity: 1, scale: 1 },
   },
   blur: {
-    initial: { opacity: 0, filter: "blur(10px)", y: 10 },
-    animate: { opacity: 1, filter: "blur(0px)", y: 0 },
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
   },
   none: {
     initial: {},

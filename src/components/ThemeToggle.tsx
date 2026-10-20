@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { useEffect, useSyncExternalStore } from "react";
 
+import { Card, Divider } from "@/components/ui";
+
 type Theme = "system" | "light" | "dark";
 
 const STORAGE_KEY = "portfolio-theme";
@@ -95,8 +97,8 @@ export function ThemeToggle({
   }, [theme, systemPrefersDark]);
 
   return (
-    <div
-      className={`inline-flex w-fit self-start items-center gap-1 border rounded-xs border-zinc-200/80 bg-zinc-50/75 p-1 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/75 ${className}`}
+    <Card
+      className={`inline-flex w-fit self-start items-center gap-1 p-1 shadow-sm ${className}`}
       role="group"
       aria-label="Display preferences"
     >
@@ -108,7 +110,7 @@ export function ThemeToggle({
         }}
         aria-label="Restart animations"
         title="Restart animations"
-        className="cursor-pointer flex h-9 w-9 items-center justify-center rounded-xs text-zinc-500 transition-colors hover:bg-primary-50 hover:text-primary-600 dark:text-zinc-400 dark:hover:bg-primary-400/15 dark:hover:text-primary-300"
+        className="cursor-pointer flex h-9 w-9 items-center justify-center rounded-sm text-zinc-500 transition-colors hover:bg-primary-50 hover:text-primary-600 dark:text-zinc-400 dark:hover:bg-primary-400/15 dark:hover:text-primary-300"
       >
         <RotateCcw size={16} strokeWidth={1.8} />
       </button>
@@ -122,7 +124,7 @@ export function ThemeToggle({
         aria-label={paused ? "Resume animations" : "Pause animations"}
         aria-pressed={paused}
         title={paused ? "Resume animations" : "Pause animations"}
-        className="cursor-pointer flex h-9 w-9 items-center justify-center rounded-xs text-zinc-500 transition-colors hover:bg-primary-50 hover:text-primary-600 dark:text-zinc-400 dark:hover:bg-primary-400/15 dark:hover:text-primary-300"
+        className="cursor-pointer flex h-9 w-9 items-center justify-center rounded-sm text-zinc-500 transition-colors hover:bg-primary-50 hover:text-primary-600 dark:text-zinc-400 dark:hover:bg-primary-400/15 dark:hover:text-primary-300"
       >
         {paused ? (
           <Play size={16} strokeWidth={1.8} />
@@ -131,7 +133,7 @@ export function ThemeToggle({
         )}
       </button>
 
-      <div className="mx-1 h-5 w-px bg-zinc-200/80 dark:bg-white/10" />
+      <Divider orientation="vertical" className="mx-1 h-5" />
 
       {themes.map(({ value, label, icon: Icon }) => {
         const selected = theme === value;
@@ -147,7 +149,7 @@ export function ThemeToggle({
             aria-label={`${label} theme`}
             aria-pressed={selected}
             title={`${label} theme`}
-            className={`cursor-pointer flex h-9 w-9 items-center justify-center rounded-xs transition-colors ${
+            className={`cursor-pointer flex h-9 w-9 items-center justify-center rounded-sm transition-colors ${
               selected
                 ? "bg-zinc-200/80 text-zinc-950 dark:bg-white/15 dark:text-white"
                 : "text-zinc-500 hover:bg-primary-50 hover:text-primary-600 dark:text-zinc-400 dark:hover:bg-primary-400/15 dark:hover:text-primary-300"
@@ -157,6 +159,6 @@ export function ThemeToggle({
           </button>
         );
       })}
-    </div>
+    </Card>
   );
 }
