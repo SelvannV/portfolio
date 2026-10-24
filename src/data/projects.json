@@ -57,5 +57,23 @@
       "new",
       "in progress"
     ]
+  },
+  {
+    "id": 4,
+    "title": "react-native-avatar-api",
+    "description": "A lightweight, offline avatar component for React Native.",
+    "image": "__FORCE_PLACEHOLDER__",
+    "links": {
+      "npmjs": "https://www.npmjs.com/package/react-native-avatar-api",
+      "GitHub": "https://github.com/SelvannV/react-native-avatar-api"
+    },
+    "stack": [
+      "TypeScript",
+      "React Native"
+    ],
+    "tags": [
+      "open source",
+      "live"
+    ]
   }
 ]
