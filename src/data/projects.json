@@ -40,5 +40,22 @@
       "new",
       "in progress"
     ]
+  },
+  {
+    "id": 3,
+    "title": "CLI Toolbox",
+    "description": "A small personnal CLI grouping different tools I use daily.",
+    "image": "__FORCE_PLACEHOLDER__",
+    "links": {
+      "GitHub": "https://github.com/SelvannV/cli-toolbox"
+    },
+    "stack": [
+      "TypeScript",
+      "Commander"
+    ],
+    "tags": [
+      "new",
+      "in progress"
+    ]
   }
 ]
